@@ -1,0 +1,21 @@
+<%= form_for(@photo) do |f| %>
+
+ <%= f.error_messages! %>
+
+ <%= f.label :photo_title %>
+ <%= f.text_field :photo_title, class: 'form-control' %>
+ <br>
+ <p><%= f.label :photo_message %> (70文字以内)</p>
+ <%= f.text_area :photo_message, :size => "20x4", :maxlength => "70", class: 'form-control' %>
+ <br>
+
+ <div class="field">
+   <%= photo_img(@photo) if photo_img(@photo) %>
+   <%= f.file_field :picture %>
+   <%= f.hidden_field :picture_cache %>
+ </div>
+
+ <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
+<% end %>
+
+<%= link_to "写真一覧画面にもどる", photos_path %>

@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="wrapper col-md-6 col-md-offset-3 col-sm-10">
+
+    <div class="photo_index">
+    <p><%= notice %></p>
+    <h1>写真一覧</h1>
+    </div>
+
+      <div class="pic_reg_btn">
+        <%= link_to "写真を投稿する", new_photo_path, class: 'btn btn-default' %>
+      </div>
+
+      <% @photos.each do |photo| %>
+            <div class = "row">
+              <div class="photo_box">
+
+                <div class="photo_user">
+                  <p><strong><%= photo.user.name %></strong></p>
+                </div>
+
+                <p>投稿日時：<%= photo.user.updated_at %></p>
+
+                <div class="photo_title">
+                  <p><%= photo.photo_title %></p>
+                </div>
+
+                <div class="photo_img">
+                  <%= photo_img(photo) %>
+                </div>
+                </br>
+
+                <div class="photo_message">
+                  <p><%= photo.photo_message %></p>
+                </div>
+
+                <div class="edit_delete_btn">
+                  <%= link_to "編集", edit_photo_path(photo.id), class: 'btn btn-default btn-sm btn-default' %>
+                  <%= link_to "削除", photo_path(photo.id), data: { confirm: '本当に削除していいですか？' }, method: :delete, class: 'btn btn-default btn-sm btn btn-default' %>
+                </div>
+
+              </div>
+            </div>
+      <% end %>
+  </div>
+</div>
