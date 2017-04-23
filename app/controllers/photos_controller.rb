@@ -18,6 +18,7 @@ class PhotosController < ApplicationController
     @photo.user_id = current_user.id
     if @photo.save
       redirect_to photos_path, notice: "写真とメッセージを投稿しました！"
+      NoticeMailer.sendmail_photo(@photo).deliver
     else
       render 'new'
     end
