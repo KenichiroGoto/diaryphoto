@@ -11,20 +11,81 @@
   <%= csrf_meta_tags %>
 </head>
 
-<heaer>
-  <li><%= link_to "写真", photos_path %></li>
-  <% if user_signed_in? %>
-    <li><%= link_to "マイページ", edit_user_registration_path %></li>
-    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-  <% else %>
-    <li><%= link_to "ログイン", new_user_session_path %></li>
-    <li><%= link_to "サインアップ", new_user_registration_path %></li>
-  <% end %>
-</heaer>
+<header>
+  <div class="navigate">
+    <div class="navigate_box">
 
-<body>
+      <div class="diaryphoto_home">
+        <a href="/"><img src="<%= asset_path "diaryphoto_logo.png" %>"></a>
+      </div>
 
-<%= yield %>
+      <!-- <div class="content_links">
+        <li><%= link_to "写真", photos_path %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "マイページ", edit_user_registration_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "サインアップ", new_user_registration_path %></li>
+        <% end %>
+      </div> -->
+
+      <!-- <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "写真", photos_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "マイページ", edit_user_registration_path %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+            <li><%= link_to "サインアップ", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </li> -->
+        <div class="link_box">
+
+          <% if user_signed_in? %>
+            <div class="photo_link">
+              <%= link_to image_tag('photos_icon.png'), photos_path %>
+            </div>
+            <div class="user_link">
+              <%= link_to image_tag('instagram_user_logo.png'), edit_user_registration_path %>
+            </div>
+            <div class="logout_link">
+              <%= link_to image_tag('logout_icon.png'), destroy_user_session_path, method: :delete %>
+            </div>
+          <% else %>
+            <div class="signup_link">
+              <%= link_to image_tag('signup_icon.png'), new_user_registration_path %>
+            </div>
+            <div class="login_link">
+              <%= link_to image_tag('login_icon.png'), new_user_session_path %>
+            </div>
+          <% end %>
+
+        </div>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- <% if user_signed_in? %>
+  <body background="<%= asset_path "take_pictures_image_2_mono2.jpg" %>">
+<% else %>
+  <body background="<%= asset_path "take_pictures_image_2_br.jpg" %>">
+<% end %> -->
+
+<% unless current_page?(photos_path) %>
+  <body background="<%= asset_path "take_pictures_image_2_br.jpg" %>">
+<% end %>
+
+    <%= yield %>
+
+  <footer>
+    <p>&copy;Diaryphoto</p>
+  </footer>
 
 </body>
 </html>

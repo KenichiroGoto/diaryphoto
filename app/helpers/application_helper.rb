@@ -4,9 +4,20 @@ module ApplicationHelper
     return image_tag(photo.picture, alt: photo.photo_title) if photo.picture?
 
     if photo.picture.blank?
-      img_url = 'no_image.png'
+      img_url = ''
     end
     image_tag(img_url, alt: photo.photo_title)
+  end
+
+  def profile_img(user)
+    return image_tag(user.avatar, alt: user.name) if user.avatar?
+
+    unless user.provider.blank?
+      img_url = user.image_url
+    else
+      img_url = 'no_image.png'
+    end
+    image_tag(img_url, alt: user.name)
   end
 
 end

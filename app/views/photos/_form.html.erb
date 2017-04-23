@@ -10,7 +10,9 @@
  <br>
 
  <div class="field">
-   <%= photo_img(@photo) if photo_img(@photo) %>
+   <div class="photo_img">
+     <%= photo_img(@photo) if photo_img(@photo) %>
+   </div>
    <%= f.file_field :picture %>
    <%= f.hidden_field :picture_cache %>
  </div>
