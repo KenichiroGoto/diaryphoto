@@ -45,10 +45,12 @@
               <p><%= photo.photo_message %></p>
             </div>
 
-            <div class="edit_delete_btn">
-              <%= link_to "編集", edit_photo_path(photo.id), class: 'btn btn-default btn-sm btn-default' %>
-              <%= link_to "削除", photo_path(photo.id), data: { confirm: '本当に削除していいですか？' }, method: :delete, class: 'btn btn-default btn-sm btn btn-default' %>
-            </div>
+              <% if current_user.uid == photo.user.uid %>
+                <div class="edit_delete_btn">
+                  <%= link_to "編集", edit_photo_path(photo.id), class: 'btn btn-default btn-sm btn-default' %>
+                  <%= link_to "削除", photo_path(photo.id), data: { confirm: '本当に削除していいですか？' }, method: :delete, class: 'btn btn-default btn-sm btn btn-default' %>
+                </div>
+              <% end %>
 
           </div>
         <% end %>
